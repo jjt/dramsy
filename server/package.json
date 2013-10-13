@@ -1,0 +1,17 @@
+{
+  "name": "dramsy",
+  "dependencies": {
+    "express": "~3.4.0",
+    "generator-express": "~1.0.6",
+    "mongoskin": "~0.6.0",
+    "lodash": "~2.2.1",
+    "express-resource": "~1.0.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.1",
+    "grunt-express-server": "~0.4.4",
+    "http-proxy": "~0.10.3"
+  }
+}
