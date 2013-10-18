@@ -1,7 +1,10 @@
 $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
+
+@import "variables";
 @import "bootstrap-sass/lib/bootstrap";
+@import "bourbon/bourbon";
 
 /* Put your CSS here */
 html, body {
@@ -28,4 +31,22 @@ body {
     font-size: 60px;
     line-height: 1;
     letter-spacing: -1px;
+}
+
+.control-label {
+  text-transform: uppercase;
+  color:$gray-light;
+}
+
+.form-horizontal .control-label {
+}
+
+.FocusInput [spanElement] {
+  padding:6px;
+  display:inline-block;
+  cursor: pointer;
+}
+
+.FocusInput[fi-label] [inputElement] {
+  @extend .col-lg-11;
 }

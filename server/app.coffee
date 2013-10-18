@@ -25,22 +25,27 @@ app.configure () ->
 
 db = mongoskin.db config.db, safe: true
 whiskiesCollection = db.collection 'whiskies'
+whiskyFields = (obj) ->
+  _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating' ]
+
+whiskyUpsert = (req, res) ->
+    newObj = req.body
+    if newObj._id
+      console.log "REQ BODY ID"
+      newObj._id = new db.ObjectID(newObj._id)
+    whiskiesCollection.save whiskyFields(newObj), (err, doc) ->
+      res.json {err, doc}
+
 app.resource 'api/whisky',
   index: (req, res) ->
     whiskies = whiskiesCollection.find().toArray (err, whiskies) ->
       res.json whiskies
-  create: (req, res) ->
-    whiskiesCollection.save req.body, (err, doc) ->
-      res.json {err, doc}
+  create: whiskyUpsert
+  update: whiskyUpsert
   show: (req, res) ->
     console.log req.params
     whisky = whiskiesCollection.findById req.params.whisky, (err, doc) ->
-      res.json {err, doc}
-  update: (req, res) ->
-    updateObj =
-      $set: _.omit req.body, '_id'
-    whiskiesCollection.updateById req.params.whisky, updateObj, (err, doc) ->
-      res.json {err, doc}
+      res.json doc
  
 
 app.use (req, res) ->

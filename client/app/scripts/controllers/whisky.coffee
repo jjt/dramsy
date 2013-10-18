@@ -1,9 +1,5 @@
 'use strict'
 
 angular.module('dramsyApp')
-  .controller 'WhiskyCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'WhiskyCtrl', ($scope, Restangular) ->
+    $scope.whiskies = Restangular.all('whisky').getList()

@@ -29,11 +29,11 @@
     <div class="container" ng-view=""></div>
 
 
-    <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular.js"></script>
     <script src="bower_components/lodash/dist/lodash.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
         <!-- build:js scripts/plugins.js -->
+        <!--
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
@@ -47,12 +47,14 @@
         <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
         <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+        -->
         <!-- endbuild -->
 
         <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular-resource.js"></script>
+        <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular-cookies.js"></script>
+        <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular-sanitize.js"></script>
+        <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular-route.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -60,6 +62,13 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/whisky.js"></script>
         <script src="scripts/services/whisky.js"></script>
+        <script src="scripts/directives/whiskyItem.js"></script>
+        <script src="scripts/controllers/whiskyDetail.js"></script>
+        <script src="scripts/directives/focusMe.js"></script>
+        <script src="scripts/directives/focus.js"></script>
+        <script src="scripts/directives/focusInput.js"></script>
+        <script src="scripts/directives/testo.js"></script>
+        <script src="scripts/directives/editspan.js"></script>
         <!-- endbuild -->
 </body>
 </html>
