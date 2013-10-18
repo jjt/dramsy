@@ -1,0 +1,13 @@
+<form novalidate name="whiskyForm" class="form-horizontal"> 
+  <h1 focus-input="whisky.name" fi-input-class="input-lg">
+    {{ whisky.name }}</h1>
+  <div focus-input="whisky.abv" fi-label="ABV">
+    {{ whisky.abv }}</div> 
+  <div focus-input="whisky.notes" fi-label="Notes" fi-input="textarea">
+    {{ whisky.notes }}</div> 
+  <div focus-input="whisky.date" fi-label="Date Sampled" fi-input-type="date">
+    {{ whisky.date }} </div>
+    
+  <button ng-click="save()" ng-disabled="cleanForm()" class="btn btn-primary">
+    Save</button>
+</form>

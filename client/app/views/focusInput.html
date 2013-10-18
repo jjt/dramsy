@@ -1,0 +1,9 @@
+<label ng-click="editing = true" class="control-label col-lg-1">
+  {{ fiLabel }}</label>
+<span inputContainer>
+  <span spanElement ng-hide="editing" ng-click="editing = true">
+    {{ focusInput || "Click to edit" }}</span> 
+  <INPUTTAGNAME inputElement ng-show="editing" ng-blur="editing = false"
+    type="text" ng-model="focusInput" focus="editing"
+    class="form-control {{ fiInputClass }}">
+</span>
