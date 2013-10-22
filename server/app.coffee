@@ -26,7 +26,7 @@ app.configure () ->
 db = mongoskin.db config.db, safe: true
 whiskiesCollection = db.collection 'whiskies'
 whiskyFields = (obj) ->
-  _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating' ]
+  _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating', 'age' ]
 
 whiskyUpsert = (req, res) ->
     newObj = req.body

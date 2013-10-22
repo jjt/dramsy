@@ -6,6 +6,9 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
+var modRewrite = require('connect-modrewrite');
+
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -72,12 +75,16 @@ module.exports = function (grunt) {
       options: {
         port: 3001,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'dramsy.node'
+        hostname: 'dramsy.node',
+        debug: true
       },
       livereload: {
         options: {
           middleware: function (connect) {
             return [
+              modRewrite([
+                '!\\.html|\\.js|\\.css|\\.png|\\.coffee$ /index.html [L]'
+              ]),
               lrSnippet,
               mountFolder(connect, '.tmp'),
               mountFolder(connect, yeomanConfig.app)

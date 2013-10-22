@@ -9,7 +9,7 @@ angular.module('dramsyApp')
     
     $scope.save = () ->
       $scope.whisky.put().then () ->
-        console.log arguments
         $scope.whisky.clean = true
+        $scope.whiskyForm.$setPristine()
         alert 'saved!'
          

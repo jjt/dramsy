@@ -1,13 +1,57 @@
-<form novalidate name="whiskyForm" class="form-horizontal"> 
-  <h1 focus-input="whisky.name" fi-input-class="input-lg">
-    {{ whisky.name }}</h1>
-  <div focus-input="whisky.abv" fi-label="ABV">
-    {{ whisky.abv }}</div> 
-  <div focus-input="whisky.notes" fi-label="Notes" fi-input="textarea">
-    {{ whisky.notes }}</div> 
-  <div focus-input="whisky.date" fi-label="Date Sampled" fi-input-type="date">
-    {{ whisky.date }} </div>
-    
-  <button ng-click="save()" ng-disabled="cleanForm()" class="btn btn-primary">
-    Save</button>
+<form novalidate name="whiskyForm" > 
+  <div toggle-focus="whisky.name" class="row">
+    <h1 class="col-md-12">
+      <span tf-display></span>
+      <input tf-input type="text" name="whisky.name" class="input-lg" />
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+
+        <div toggle-focus="whisky.age" class="col-md-4 form-group">
+          <label tf-label class="control-label">Age</label> 
+          <span tf-display="(tf-model) years" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control">
+            <span class="input-group-addon">years</span>
+          </div>
+        </div>
+
+        <div toggle-focus="whisky.abv" class="col-md-4 form-group">
+          <label tf-label class="control-label">ABV</label> 
+          <span tf-display="(tf-model)%" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control">
+            <span class="input-group-addon">%</span>
+          </div>
+        </div>
+
+        <div toggle-focus="whisky.date" class="col-md-4 form-group">
+          <label tf-label class="control-label">Date Sampled</label> 
+          <span tf-display class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control" type="date">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div toggle-focus="whisky.notes" class="col-md-12 form-group">
+          <label tf-label class="control-label">Notes</label> 
+          <span tf-display class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <textarea tf-input class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="well col-md-12">
+      <button ng-click="save()" ng-disabled="cleanForm()" class="btn btn-primary">
+        Save</button>
+    </div>
+  </div> 
 </form>

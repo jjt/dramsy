@@ -1,9 +1,9 @@
 <label ng-click="editing = true" class="control-label">
-  {{ fiLabel }}</label>
+  {{ tfLabel }}</label>
 <div inputContainer>
   <span spanElement ng-hide="editing" ng-click="editing = true">
-    {{ focusInput || "Click to edit" }}</span> 
+    {{ toggleFocus || "Click to edit" }}</span> 
   <inputtagname inputElement ng-show="editing" ng-blur="editing = false"
-  type="{{ fiInputType }}" ng-model="focusInput" focus="editing"
-    class="form-control {{ fiInputClass }}">
+  type="{{ tfInputType }}" ng-model="toggleFocus" focus="editing"
+    class="form-control {{ tfInputClass }}">
 </div>

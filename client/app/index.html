@@ -12,9 +12,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
-</head>
+  </head>
   <body ng-app="dramsyApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -26,27 +26,38 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <header class="navbar navbar-fixed-top site-header">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Dramsy</a>
+        </div>
+        <ul nav-menu="active">
+          <li><a href="/whisky">Whiskies</a></li>
+        </ul>
+      </div>
+    </header>
+
     <div class="container" ng-view=""></div>
 
 
     <script src="http://code.angularjs.org/angular-1.2.0-8336b3a/angular.js"></script>
-    <script src="bower_components/lodash/dist/lodash.js"></script>
-    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="/bower_components/lodash/dist/lodash.js"></script>
+    <script src="/bower_components/restangular/dist/restangular.js"></script>
         <!-- build:js scripts/plugins.js -->
         <!--
-        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
+        <script src="/bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
         -->
         <!-- endbuild -->
 
@@ -58,17 +69,14 @@
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/whisky.js"></script>
-        <script src="scripts/services/whisky.js"></script>
-        <script src="scripts/directives/whiskyItem.js"></script>
-        <script src="scripts/controllers/whiskyDetail.js"></script>
-        <script src="scripts/directives/focusMe.js"></script>
-        <script src="scripts/directives/focus.js"></script>
-        <script src="scripts/directives/focusInput.js"></script>
-        <script src="scripts/directives/testo.js"></script>
-        <script src="scripts/directives/editspan.js"></script>
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/controllers/main.js"></script>
+        <script src="/scripts/controllers/whisky.js"></script>
+        <script src="/scripts/controllers/whiskyDetail.js"></script>
+        <script src="/scripts/services/whisky.js"></script>
+        <script src="/scripts/directives/focus.js"></script>
+        <script src="/scripts/directives/navMenu.js"></script>
+        <script src="/scripts/directives/toggleFocus.js"></script>
         <!-- endbuild -->
 </body>
 </html>
