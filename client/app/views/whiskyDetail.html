@@ -9,7 +9,7 @@
     <div class="col-md-6">
       <div class="row">
 
-        <div toggle-focus="whisky.age" class="col-md-4 form-group">
+        <div toggle-focus="whisky.age" class="col-md-3 form-group">
           <label tf-label class="control-label">Age</label> 
           <span tf-display="(tf-model) years" class="text-lg"></span>
           <div tf-input-cont class="input-group">
@@ -18,7 +18,7 @@
           </div>
         </div>
 
-        <div toggle-focus="whisky.abv" class="col-md-4 form-group">
+        <div toggle-focus="whisky.abv" class="col-md-3 form-group">
           <label tf-label class="control-label">ABV</label> 
           <span tf-display="(tf-model)%" class="text-lg"></span>
           <div tf-input-cont class="input-group">
@@ -27,6 +27,15 @@
           </div>
         </div>
 
+
+        <div toggle-focus="whisky.rating" class="col-md-2 form-group">
+          <label tf-label class="control-label">Rating</label> 
+          <span tf-display="(tf-model)/5" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control">
+            <span class="input-group-addon">/5</span>
+          </div>
+        </div>
         <div toggle-focus="whisky.date" class="col-md-4 form-group">
           <label tf-label class="control-label">Date Sampled</label> 
           <span tf-display class="text-lg"></span>
