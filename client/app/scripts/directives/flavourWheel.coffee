@@ -18,8 +18,8 @@ angular.module('dramsyApp')
       numSegs = flavours.length
       segmentBg = '#eee'
 
-      darker = (color) ->
-        d3.rgb(color).darker(0.3)
+      darker = (color, amt = 0.3) ->
+        d3.rgb(color).darker(amt)
 
       flavoursToCircChart = (ratings) ->
         numOutput = maxRating * numSegs
@@ -46,6 +46,21 @@ angular.module('dramsyApp')
             .append('svg')
             .call(chart)
 
+        addCenterTextEls = (el) ->
+          el.append('text')
+          textEl = el.select('text')
+          textEl.append('tspan')
+            .attr(dy: '1.2em', x: 0, class: 'label-style')
+            .text('Flavor')
+          textEl.append('tspan')
+            .attr(dy: '1.2em', x: 5, class: 'label-style')
+            .text('Wheel')
+          textEl.append('tspan')
+            .attr(dy: '1.4em', x: 14, class: 'upper small bold')
+            .append('a')
+            .attr('xlink:href': 'http://google.com')
+            .text('help')
+
         segmentClick = () ->
             seg = d3.select this
             segId = 1 * seg.attr 'seg-id'
@@ -65,16 +80,18 @@ angular.module('dramsyApp')
             while i--
               cellId = i * numSegs + segId
               newColor = if newRating > i then colors[segId] else segmentBg
-              darkerColor = darker newColor
+              newStroke = darker newColor, 0.2
+              darkerColor = darker newColor, 0.3
+              darkerStroke = darker darkerColor, 0.2
               console.log cellId, newColor, newRating, i, segId
                 
               d = d3.select("[cell-id='#{cellId}']")
               # Set colors, check to see if we're moused over the cell
               d.attr
                 'fill': if d.attr('mouseover') then darkerColor else newColor
-                'stroke': if d.attr('mouseover') then darkerColor else newColor
+                'stroke': if d.attr('mouseover') then darkerStroke else newStroke
                 'fill-orig': newColor
-                'stroke-orig': newColor
+                'stroke-orig': newStroke
           
 
         chart = circularHeatChart()
@@ -87,6 +104,7 @@ angular.module('dramsyApp')
           .segmentColors(colors)
           .segmentBg(segmentBg)
           .segmentMargin(0.8)
+          .addCenterTextEls(addCenterTextEls)
           .segmentClick(segmentClick)
           .segmentMouseover () ->
             d = d3.select this
@@ -94,7 +112,7 @@ angular.module('dramsyApp')
               'fill-orig': d.attr('fill')
               'fill': darker d.attr('fill')
               'stroke-orig': d.attr('stroke')
-              'stroke': darker d.attr('stroke')
+              'stroke': darker darker d.attr('stroke'), 0.2
               'mouseover': true
           .segmentMouseout () ->
             d = d3.select this

@@ -23,6 +23,23 @@ h1,h2,h3 {
   font-weight: normal;
 }
 
+a {
+  fill: $link-color; 
+}
+
+
+.upper {
+  text-transform: uppercase;
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .site-header {
   background:whitesmoke;
   border: 1px solid #e3e3e3;
@@ -66,6 +83,7 @@ h1,h2,h3 {
   text-transform: uppercase;
   color:$gray-light;
   font-weight: bold;
+  fill: $gray-light;
 }
 
 
@@ -130,13 +148,19 @@ input, textarea {
     // Rotate wheel 1/16th of a turn to line up the first flavour on vertical
   }
 
-  .circular-heat, .labels {
+  path {
+    stroke-width:1;
   }
 
-  .ch-center {
+  .chc-center {
     fill: #eee;
     stroke-width: 1;
     stroke:rgba(0,0,0,0.1);
   }
+
+  .chc-cell {
+    cursor: pointer;
+  }
+
 
 }
