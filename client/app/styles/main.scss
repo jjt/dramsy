@@ -1,10 +1,12 @@
 $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
+$gray-light-mid: lighten(#000, 75%);
 
 @import "variables";
 @import "bootstrap-sass/lib/bootstrap";
 @import "bourbon/bourbon";
+@import "../bower_components/solarized/scss/solarized-classes";
 
 /* Put your CSS here */
 html, body {
@@ -35,6 +37,11 @@ h1,h2,h3 {
   }
 }
 
+// Puts a high z-index on something
+.high-z {
+  z-index:1000;
+}
+
 .text-lg {
   font-size:$font-size-large;
 }
@@ -55,13 +62,38 @@ h1,h2,h3 {
     letter-spacing: -1px;
 }
 
-.control-label {
+.label-style {
   text-transform: uppercase;
   color:$gray-light;
+  font-weight: bold;
 }
 
 
-[toggle-focus] [tf-display] {
+.placeholder {
+  color: $gray-light-mid;
+  font-style: italic;
+  padding-left: 3px;
+}
+
+input, textarea {
+  @include placeholder {
+    color: $gray-light-mid;
+    font-style: italic;
+  }
+}
+
+.control-label {
+  @extend .label-style;
+}
+
+.whisky-header {
+  h1 {
+    display: inline-block;
+  }
+}
+
+
+[toggle-focus] [tf-display], .tf-display {
   display:block;
   cursor: pointer;
   padding:4px 0 5px;
@@ -73,6 +105,7 @@ h1,h2,h3 {
 
 [toggle-focus] [tf-input-cont] {
   margin:0px -7px -1px;
+  width:100%;
 }
 
 .input-xlg {
@@ -83,4 +116,27 @@ h1,h2,h3 {
 [nav-menu] {
   @extend .nav;
   @extend .navbar-nav;
+}
+
+.flavour-wheel {
+  svg-holder {
+    display: block;
+    position: relative;
+  }
+
+  svg {
+    width: 420px;
+    height: 420px;
+    // Rotate wheel 1/16th of a turn to line up the first flavour on vertical
+  }
+
+  .circular-heat, .labels {
+  }
+
+  .ch-center {
+    fill: #eee;
+    stroke-width: 1;
+    stroke:rgba(0,0,0,0.1);
+  }
+
 }

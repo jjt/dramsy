@@ -1,5 +1,9 @@
-<h1>Whiskies</h1>
-<input type="text" ng-model="search" placeholder="Search">
+<div class="row">
+  <div class="col-md-12 whisky-header">
+    <h1>Whiskies</h1>
+    <a href="/whisky/new" class="btn btn-primary">New Whisky</a>
+    <input type="text" ng-model="search" placeholder="Search">
+  </div>
 
 <ul class="list-unstyled">
   <li ng-repeat="whisky in whiskies | filter: search | orderBy: 'name'">

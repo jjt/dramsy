@@ -9,12 +9,23 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
       .when '/whisky',
         templateUrl: '/views/whisky.html'
         controller: 'WhiskyCtrl'
+      .when '/whisky/new',
+        controller: 'WhiskyDetailCtrl'
+        templateUrl: '/views/whiskyDetail.html'
+        resolve:
+          whisky: () ->
+            {}
+          whiskyAll: (Restangular) ->
+            Restangular.all('whisky')
+
       .when '/whisky/:id',
         controller: 'WhiskyDetailCtrl'
         templateUrl: '/views/whiskyDetail.html'
         resolve:
           whisky: (Restangular, $route) ->
             Restangular.one('whisky', $route.current.params.id).get()
+          whiskyAll: (Restangular) ->
+            Restangular.all('whisky')
       .otherwise
         redirectTo: '/'
 

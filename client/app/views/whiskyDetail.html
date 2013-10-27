@@ -1,60 +1,82 @@
 <form novalidate name="whiskyForm" > 
-  <div toggle-focus="whisky.name" class="row">
-    <h1 class="col-md-12">
-      <span tf-display></span>
-      <input tf-input type="text" name="whisky.name" class="input-lg" />
-    </h1>
-  </div>
   <div class="row">
     <div class="col-md-6">
-      <div class="row">
 
-        <div toggle-focus="whisky.age" class="col-md-3 form-group">
+      <div class="row" ng-show="{{ whisky.isNew }}">
+        <div class="col-md-12">
+          <h1>New Whisky</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div toggle-focus="whisky.name" class="col-md-12"
+          edit-mode="{{ whisky.isNew }}">
+          <h1>
+            <span tf-display></span>
+            <input tf-input type="text" name="whisky.name" class="input-lg"
+              placeholder="Whisky name"/>
+          </h1>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div toggle-focus="whisky.age" edit-mode="{{ whisky.isNew }}"
+          class="col-md-3 form-group">
           <label tf-label class="control-label">Age</label> 
           <span tf-display="(tf-model) years" class="text-lg"></span>
           <div tf-input-cont class="input-group">
-            <input tf-input class="form-control">
+            <input tf-input class="form-control" placeholder="12">
             <span class="input-group-addon">years</span>
           </div>
         </div>
 
-        <div toggle-focus="whisky.abv" class="col-md-3 form-group">
+        <div toggle-focus="whisky.abv"  edit-mode="{{ whisky.isNew }}"
+          class="col-md-3 form-group">
           <label tf-label class="control-label">ABV</label> 
           <span tf-display="(tf-model)%" class="text-lg"></span>
           <div tf-input-cont class="input-group">
-            <input tf-input class="form-control">
+            <input tf-input class="form-control" placeholder="40">
             <span class="input-group-addon">%</span>
           </div>
         </div>
 
-
-        <div toggle-focus="whisky.rating" class="col-md-2 form-group">
-          <label tf-label class="control-label">Rating</label> 
-          <span tf-display="(tf-model)/5" class="text-lg"></span>
-          <div tf-input-cont class="input-group">
-            <input tf-input class="form-control">
-            <span class="input-group-addon">/5</span>
-          </div>
-        </div>
-        <div toggle-focus="whisky.date" class="col-md-4 form-group">
+        <div toggle-focus="whisky.date"  edit-mode="{{ whisky.isNew }}"
+          class="col-md-3 form-group high-z">
           <label tf-label class="control-label">Date Sampled</label> 
           <span tf-display class="text-lg"></span>
           <div tf-input-cont class="input-group">
-            <input tf-input class="form-control" type="date">
+            <input tf-input class="form-control" type="date"
+              placeholder="dd-mm-yyyy">
           </div>
         </div>
+
+        <div toggle-focus="whisky.rating"  edit-mode="{{ whisky.isNew }}"
+          class="col-md-3 form-group">
+          <label tf-label class="control-label">Rating</label> 
+          <span tf-display="(tf-model)/5" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control" placeholder="4">
+            <span class="input-group-addon">/5</span>
+          </div>
+        </div>
+
 
       </div>
 
       <div class="row">
-        <div toggle-focus="whisky.notes" class="col-md-12 form-group">
+        <div toggle-focus="whisky.notes"  edit-mode="{{ whisky.isNew }}"
+          class="col-md-12 form-group">
           <label tf-label class="control-label">Notes</label> 
           <span tf-display class="text-lg"></span>
           <div tf-input-cont class="input-group">
-            <textarea tf-input class="form-control"></textarea>
+            <textarea tf-input class="form-control" placeholder="Notes about your tasting"></textarea>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-md-6">
+      <flavour-wheel fw-data="whisky.flavors"></flavour-wheel>
     </div>
   </div>
   <div class="row">
