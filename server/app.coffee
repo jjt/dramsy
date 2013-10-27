@@ -26,15 +26,39 @@ app.configure () ->
 db = mongoskin.db config.db, safe: true
 whiskiesCollection = db.collection 'whiskies'
 whiskyFields = (obj) ->
-  _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating', 'age' ]
+  _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating', 'age',
+    'flavors']
 
+# Handles new and updating
 whiskyUpsert = (req, res) ->
     newObj = req.body
-    if newObj._id
-      console.log "REQ BODY ID"
-      newObj._id = new db.ObjectID(newObj._id)
-    whiskiesCollection.save whiskyFields(newObj), (err, doc) ->
-      res.json {err, doc}
+    # Grab the id and strip the key from the update object
+    id = req.params?.whisky || newObj._id
+    delete newObj._id
+
+    # Would be great to combine these into an upsert that updates only the
+    # fields that are passed in, but that proved problematic
+    if id
+      opts =
+        upsert: true
+        safe: true
+      console.log id, whiskyFields(newObj)
+      whiskiesCollection.update { _id: db.ObjectID(id) },
+        { $set: whiskyFields(newObj) },
+        opts
+        (err, doc) ->
+          res.json {err, doc}
+    else
+      whiskiesCollection.insert newObj, {safe: true}, (err, doc) ->
+        res.json {err, doc}
+
+
+    #console.log newObj
+    #whiskiesCollection.update { _id: id },
+      #{ $set: whiskyFields(newObj) },
+      #opts,
+      #(err, doc) ->
+        #res.json {err, doc}
 
 app.resource 'api/whisky',
   index: (req, res) ->
@@ -42,8 +66,8 @@ app.resource 'api/whisky',
       res.json whiskies
   create: whiskyUpsert
   update: whiskyUpsert
+  patch: whiskyUpsert
   show: (req, res) ->
-    console.log req.params
     whisky = whiskiesCollection.findById req.params.whisky, (err, doc) ->
       res.json doc
  
