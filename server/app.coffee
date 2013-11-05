@@ -1,7 +1,7 @@
 config = require './config'
 express = require 'express'
 require 'express-resource'
-httpProxy = require 'http-proxy'
+#httpProxy = require 'http-proxy'
 mongoskin = require 'mongoskin'
 _ = require 'lodash'
 
@@ -9,17 +9,18 @@ app = express()
 
 # Proxy to our Yeoman Angular dev server
 # TODO: separate into a DEV section of config
-proxy = new httpProxy.RoutingProxy()
-apiProxy = (host, port) ->
-  (req, res, next) ->
-    dirs = ['bower_components', 'scripts', 'styles', 'views']
-    if req.url.match "^/$|^/#{dirs.join '|^/'}"
-      proxy.proxyRequest req, res, {host, port}
-    else
-      next()
+#proxy = new httpProxy.RoutingProxy()
+#apiProxy = (host, port) ->
+  #(req, res, next) ->
+    ##dirs = ['bower_components', 'scripts', 'styles', 'views']
+    #dirs = ['bower_components', 'scripts', 'styles', 'views']
+    #if req.url.match "^/$|^/#{dirs.join '|^/'}"
+      #proxy.proxyRequest req, res, {host, port}
+    #else
+      #next()
 
 app.configure () ->
-  app.use apiProxy 'localhost', 3001
+  #app.use apiProxy 'localhost', 3001
   app.use express.bodyParser()
 
 
@@ -27,7 +28,7 @@ db = mongoskin.db config.db, safe: true
 whiskiesCollection = db.collection 'whiskies'
 whiskyFields = (obj) ->
   _.pick obj, [ '_id', 'abv', 'name', 'notes', 'date', 'rating', 'age',
-    'flavors']
+    'flavors', 'color', 'distiller', 'price']
 
 # Handles new and updating
 whiskyUpsert = (req, res) ->
@@ -73,6 +74,7 @@ app.resource 'api/whisky',
  
 
 app.use (req, res) ->
+  console.log req.url
   res.send 404, 'Whoops, Dramsy had too many.'
 
 
