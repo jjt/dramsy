@@ -34,15 +34,19 @@ module.exports = function (grunt) {
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
-        tasks: ['coffee:dist']
+        tasks: ['newer:coffee:dist']
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
-        tasks: ['coffee:test', 'karma:unit']
+        tasks: ['newer:coffee:test', 'karma:unit']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
+      },
+      grunt: {
+        files: ['Gruntfile.js'],
+        tasks: ['ngconstant:dev']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -145,13 +149,11 @@ module.exports = function (grunt) {
         sourceRoot: ''
       },
       dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/scripts',
-          src: '{,*/}*.coffee',
-          dest: '.tmp/scripts',
-          ext: '.js'
-        }]
+        expand: true,
+        cwd: '<%= yeoman.app %>/scripts',
+        src: '{,*/}*.coffee',
+        dest: '.tmp/scripts',
+        ext: '.js'
       },
       test: {
         files: [{
@@ -301,17 +303,17 @@ module.exports = function (grunt) {
     },
     concurrent: {
       server: [
-        'coffee:dist',
+        'newer:coffee:dist',
         'compass:server',
         'copy:styles'
       ],
       test: [
-        'coffee',
+        'newer:coffee',
         'compass',
         'copy:styles'
       ],
       dist: [
-        'coffee',
+        'newer:coffee',
         'compass:dist',
         'copy:styles',
         'imagemin',
@@ -348,6 +350,28 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    ngconstant: {
+      options: {
+        coffee: true,
+        deps: null
+      },
+      dist: {
+        dest: 'app/scripts/services/localConfig.LOCAL.coffee',
+        name: 'dramsyApp',
+        constants: {
+          rootUrlWeb: 'http://production.url/',
+          rootUrlApi: 'http://production.api.url/'
+        }
+      },
+      dev: {
+        dest: 'app/scripts/services/localConfig.LOCAL.coffee',
+        name: 'dramsyApp',
+        constants: {
+          rootUrlWeb: 'http://dramsy.loc/',
+          rootUrlApi: 'http://dramsy.loc/api/'
+        }
+      }
     }
   });
 
@@ -358,10 +382,10 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:dev',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
-      'open',
       'watch'
     ]);
   });
@@ -376,6 +400,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:dist',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
