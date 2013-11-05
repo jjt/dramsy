@@ -11,7 +11,7 @@ angular.module('dramsyApp')
 
       flavours = ['Wood', 'Cereal', 'Fruit', 'Wine', 'Floral', 'Feinty',
         'Sulphur', 'Peat']
-      colors = ['#765825', '#b5891d', '#DC322F', '#D33682', '#6C71C4',
+      colors = ['#765825', '#c89700', '#DC322F', '#b83074', '#6C71C4',
         '#268BD2', '#888', '#859900']
 
       maxRating = 5
@@ -53,13 +53,8 @@ angular.module('dramsyApp')
             .attr(dy: '1.2em', x: 0, class: 'label-style')
             .text('Flavor')
           textEl.append('tspan')
-            .attr(dy: '1.2em', x: 5, class: 'label-style')
+            .attr(dy: '1.2em', x: 4, class: 'label-style')
             .text('Wheel')
-          textEl.append('tspan')
-            .attr(dy: '1.4em', x: 14, class: 'upper small bold')
-            .append('a')
-            .attr('xlink:href': 'http://google.com')
-            .text('help')
 
         segmentClick = () ->
             seg = d3.select this

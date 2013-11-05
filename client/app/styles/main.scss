@@ -40,6 +40,14 @@ a {
   font-weight: bold;
 }
 
+.lined-paper-bg {
+  margin: 0 auto;
+  @include background-image(linear-gradient(top, #ddd 0%, #fafafa 4%));
+  background-size: 100% 25px;
+  position: relative;
+  background-position:0 20px;
+}
+
 .site-header {
   background:whitesmoke;
   border: 1px solid #e3e3e3;
@@ -117,6 +125,17 @@ input, textarea {
   padding:4px 0 5px;
 }
 
+[toggle-focus].tf-textarea {
+  [tf-display] {
+    min-height:150px;
+    margin: 0 -7px -1px;
+    padding: 0 7px 1px;
+  }
+  textarea {
+    min-height:150px;
+  }
+}
+
 [toggle-focus] [tf-label] {
   cursor: pointer;
 }
@@ -137,9 +156,13 @@ input, textarea {
 }
 
 .flavour-wheel {
+  margin-top: 20px;
+  display:block;
   svg-holder {
     display: block;
     position: relative;
+    width:420px;
+    margin:0 auto;
   }
 
   svg {
@@ -162,5 +185,32 @@ input, textarea {
     cursor: pointer;
   }
 
+}
 
+
+.vertical-range {
+  padding-top: 20px;
+  label {
+    @extend .control-label;
+    text-align: center;
+    display: block;
+  }
+  input, .input-holder {
+  }
+  .input-holder {
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    display: block;
+    height: 377px;
+    width:40px;
+    background: url(../images/whisky-color-scale.png) top center no-repeat;
+  }
+
+  input {
+    margin: 0 auto;
+    display: block;
+    width:38px;
+    height: 375px;
+    -webkit-appearance: slider-vertical;
+  }
 }

@@ -36,23 +36,6 @@ function circularHeatChart() {
           parseInt(margin.top + offset + dy) + ')';
       }
 
-    
-      // Center circle
-      var centerArc = d3.svg.arc()
-        .innerRadius(0)
-        .startAngle(0)
-        .endAngle(360);
-
-      svg.append('g')
-        .append('path')
-        .attr('d', centerArc.outerRadius(innerRadius+1))
-        .attr('transform', circHeatTranslate())
-        .classed('chc-center', true)
-
-      centerTextG = svg.append('g')
-        .attr('transform', circHeatTranslate(-28, -26))
-      addCenterTextEls(centerTextG)
-
 
 
 
@@ -135,7 +118,13 @@ function circularHeatChart() {
         .on('click', segmentClick)
         .on('mouseover', segmentMouseover)
         .on('mouseout', segmentMouseout)
-
+        .append('svg:title')
+        .text(function(d, i){
+          var segId = this.parentNode.attributes['seg-id'].value,
+              radId = this.parentNode.attributes['radial-id'].value,
+              segClear = (radId == 0) ? ', click again to set to 0' : '';
+          return 'Click to set ' + segmentLabels[segId] + ' to ' + (radId*1 + 1) + segClear;
+        })
 
       // Unique id so that the text path defs are unique - is there a better way to do this?
       var id = d3.selectAll('.circular-heat')[0].length;
@@ -167,6 +156,22 @@ function circularHeatChart() {
         .attr('xlink:href', function(d, i) {return '#radial-label-path-'+id+'-'+i;})
         .style('font-size', 0.6 * segmentHeight + 'px')
         .text(function(d) {return d;});
+
+      // Center circle
+      var centerArc = d3.svg.arc()
+        .innerRadius(0)
+        .startAngle(0)
+        .endAngle(360);
+
+      svg.append('g')
+        .append('path')
+        .attr('d', centerArc.outerRadius(innerRadius))
+        .attr('transform', circHeatTranslate())
+        .classed('chc-center', true)
+
+      centerTextG = svg.append('g')
+        .attr('transform', circHeatTranslate(-28, -20))
+      addCenterTextEls(centerTextG)
 
     });
   }

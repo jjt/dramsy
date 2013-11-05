@@ -4,10 +4,14 @@
     <a href="/whisky/new" class="btn btn-primary">New Whisky</a>
     <input type="text" ng-model="search" placeholder="Search">
   </div>
+</div>
 
-<ul class="list-unstyled">
-  <li ng-repeat="whisky in whiskies | filter: search | orderBy: 'name'">
-    <h4><a href="/#/whisky/{{ whisky._id }}">{{ whisky.name }}</a></h4>
-  </li>
-</ul>
-
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-unstyled">
+      <li ng-repeat="whisky in whiskies | filter: search | orderBy: 'name'">
+        <h4><a href="/#/whisky/{{ whisky._id }}">{{ whisky.name }}</a></h4>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <form novalidate name="whiskyForm" > 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
 
       <div class="row" ng-show="{{ whisky.isNew }}">
         <div class="col-md-12">
@@ -20,14 +20,11 @@
       </div>
 
       <div class="row">
-        <div toggle-focus="whisky.age" edit-mode="{{ whisky.isNew }}"
-          class="col-md-3 form-group">
-          <label tf-label class="control-label">Age</label> 
-          <span tf-display="(tf-model) years" class="text-lg"></span>
-          <div tf-input-cont class="input-group">
-            <input tf-input class="form-control" placeholder="12">
-            <span class="input-group-addon">years</span>
-          </div>
+        <div toggle-focus="whisky.distiller" edit-mode="{{ whisky.isNew }}"
+          class="col-md-5 form-group">
+          <label tf-label class="control-label">Distiller</label> 
+          <span tf-display class="text-lg"></span>
+          <input tf-input class="form-control" placeholder="Distiller name">
         </div>
 
         <div toggle-focus="whisky.abv"  edit-mode="{{ whisky.isNew }}"
@@ -40,9 +37,24 @@
           </div>
         </div>
 
+
+        <div toggle-focus="whisky.age" edit-mode="{{ whisky.isNew }}"
+          class="col-md-4 form-group">
+          <label tf-label class="control-label">Age</label> 
+          <span tf-display="(tf-model) years" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <input tf-input class="form-control" placeholder="12">
+            <span class="input-group-addon">yrs</span>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
         <div toggle-focus="whisky.date"  edit-mode="{{ whisky.isNew }}"
-          class="col-md-3 form-group high-z">
-          <label tf-label class="control-label">Date Sampled</label> 
+          class="col-md-5 form-group high-z">
+          <label tf-label class="control-label">Sampled On</label> 
           <span tf-display class="text-lg"></span>
           <div tf-input-cont class="input-group">
             <input tf-input class="form-control" type="date"
@@ -60,14 +72,24 @@
           </div>
         </div>
 
+        <div toggle-focus="whisky.price"  edit-mode="{{ whisky.isNew }}"
+          class="col-md-4 form-group">
+          <label tf-label class="control-label">Price</label> 
+          <span tf-display="$(tf-model)" class="text-lg"></span>
+          <div tf-input-cont class="input-group">
+            <span class="input-group-addon">$</span>
+            <input tf-input class="form-control" placeholder="89.95">
+          </div>
+        </div>
 
       </div>
 
+
       <div class="row">
-        <div toggle-focus="whisky.notes"  edit-mode="{{ whisky.isNew }}"
-          class="col-md-12 form-group">
+        <div toggle-focus="whisky.notes" edit-mode="{{ whisky.isNew }}"
+          class="col-md-12 form-group tf-textarea">
           <label tf-label class="control-label">Notes</label> 
-          <span tf-display class="text-lg"></span>
+          <span tf-display class="text-lg lined-paper-bg"></span>
           <div tf-input-cont class="input-group">
             <textarea tf-input class="form-control" placeholder="Notes about your tasting"></textarea>
           </div>
@@ -75,10 +97,21 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-1">
+      <div class="vertical-range">
+        <label for="color-range">Color</label>
+        <div class="input-holder">
+          <input type="range" name="color-range" id="color-range" min="1" max="21"
+          step="1" ng-model="whisky.color">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
       <flavour-wheel fw-data="whisky.flavors"></flavour-wheel>
     </div>
+
   </div>
+
   <div class="row">
     <div class="well col-md-12">
       <button ng-click="save()" ng-disabled="cleanForm()" class="btn btn-primary">

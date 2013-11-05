@@ -27,7 +27,7 @@ angular.module('dramsyApp')
       inputContEl.attr
         'ng-show': 'editing'
 
-      # Any value in tf-display is future innerHTML, after interpolation
+      # Any value in tf-display is a str for innerHTML, after interpolation
       # Lets us have pre and post strings surrounding the model binding 
       #  ex. "In (tf-model) years"  >> "In {{ toggleFocus }} years"
       dispStr = displayEl.attr('tf-display') || '(tf-model)'

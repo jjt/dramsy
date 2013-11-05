@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('dramsyApp', ['restangular', 'ngRoute'])
-  .config ($routeProvider, $locationProvider, RestangularProvider) ->
+  .config ($routeProvider, $locationProvider, RestangularProvider, rootUrlApi) ->
     $routeProvider
       .when '/',
         templateUrl: '/views/main.html'
@@ -31,6 +31,9 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
 
     $locationProvider.html5Mode true
 
-    RestangularProvider.setBaseUrl 'http://dramsy.node/api/'
+    portStr = ''
+    if window.location.port == ''
+      portStr = ":#{window.location.port}"
+    RestangularProvider.setBaseUrl "http://#{window.location.hostname}#{portStr}/api/"
     RestangularProvider.setRestangularFields id: '_id'
 
