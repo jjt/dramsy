@@ -11,9 +11,10 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="/styles/main.css">
-        <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- endbuild -->
+    
   </head>
   <body ng-app="dramsyApp">
     <!--[if lt IE 7]>
@@ -32,7 +33,7 @@
           <a class="navbar-brand" href="/">Dramsy</a>
         </div>
         <ul nav-menu="active">
-          <li><a href="/whisky">Whiskies</a></li>
+          <li><a href="/tasting">Tastings</a></li>
         </ul>
       </div>
     </header>
@@ -40,7 +41,7 @@
     <div class="container" ng-view=""></div>
 
 
-        <!-- build:js scripts/modules.js -->
+        <!-- build:js /scripts/modules.js -->
         <script src="/scripts/vendor/angular-1.2.0-8336b3a/angular.js"></script>
         <script src="/scripts/vendor/angular-1.2.0-8336b3a/angular-resource.js"></script>
         <script src="/scripts/vendor/angular-1.2.0-8336b3a/angular-cookies.js"></script>
@@ -48,7 +49,7 @@
         <script src="/scripts/vendor/angular-1.2.0-8336b3a/angular-route.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js scripts/plugins.js -->
+        <!-- build:js /scripts/plugins.js -->
         <script src="/bower_components/lodash/dist/lodash.js"></script>
         <script src="/bower_components/restangular/dist/restangular.js"></script>
         <script src="/bower_components/d3/d3.min.js"></script>
@@ -71,12 +72,10 @@
         -->
         <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- build:js({.tmp,app}) /scripts/scripts.js -->
         <script src="/scripts/app.js"></script>
         <script src="/scripts/services/whisky.js"></script>
         <script src="/scripts/services/localConfig.js"></script>
-        <script src="/scripts/services/testconst.js"></script>
-        <script src="/scripts/services/testservice.js"></script>
         <script src="/scripts/controllers/main.js"></script>
         <script src="/scripts/controllers/whisky.js"></script>
         <script src="/scripts/controllers/whiskyDetail.js"></script>

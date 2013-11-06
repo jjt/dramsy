@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12 whisky-header">
-    <h1>Whiskies</h1>
-    <a href="/whisky/new" class="btn btn-primary">New Whisky</a>
+    <h1>Tastings</h1>
+    <a href="/tasting/new" class="btn btn-primary">New Tasting</a>
     <input type="text" ng-model="search" placeholder="Search">
   </div>
 </div>
@@ -10,7 +10,7 @@
   <div class="col-md-12">
     <ul class="list-unstyled">
       <li ng-repeat="whisky in whiskies | filter: search | orderBy: 'name'">
-        <h4><a href="/#/whisky/{{ whisky._id }}">{{ whisky.name }}</a></h4>
+        <h4><a href="/#/tasting/{{ whisky._id }}">{{ whisky.name }}</a></h4>
       </li>
     </ul>
   </div>

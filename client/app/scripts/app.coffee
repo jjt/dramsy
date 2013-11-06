@@ -6,10 +6,10 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
       .when '/',
         templateUrl: '/views/main.html'
         controller: 'MainCtrl'
-      .when '/whisky',
+      .when '/tasting',
         templateUrl: '/views/whisky.html'
         controller: 'WhiskyCtrl'
-      .when '/whisky/new',
+      .when '/tasting/new',
         controller: 'WhiskyDetailCtrl'
         templateUrl: '/views/whiskyDetail.html'
         resolve:
@@ -18,7 +18,7 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
           whiskyAll: (Restangular) ->
             Restangular.all('whisky')
 
-      .when '/whisky/:id',
+      .when '/tasting/:id',
         controller: 'WhiskyDetailCtrl'
         templateUrl: '/views/whiskyDetail.html'
         resolve:
@@ -32,7 +32,7 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
     $locationProvider.html5Mode true
 
     portStr = ''
-    if window.location.port == ''
+    if window.location.port != ''
       portStr = ":#{window.location.port}"
     RestangularProvider.setBaseUrl "http://#{window.location.hostname}#{portStr}/api/"
     RestangularProvider.setRestangularFields id: '_id'
