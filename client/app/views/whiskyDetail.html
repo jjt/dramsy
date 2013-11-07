@@ -34,7 +34,7 @@
 
 
         <div toggle-focus="whisky.age" edit-mode="{{ whisky.isNew }}"
-          class="col-md-4 form-group">
+          class="col-md-3 form-group">
           <label tf-label class="control-label">Age</label> 
           <span tf-display="(tf-model) years" class="text-lg"></span>
           <div tf-input-cont class="input-group">
@@ -62,13 +62,14 @@
           <label tf-label class="control-label">Rating</label> 
           <span tf-display="(tf-model)/5" class="text-lg"></span>
           <div tf-input-cont class="input-group">
-            <input tf-input class="form-control" placeholder="4">
+            <input tf-input type="number" min="0" max="5" class="form-control"
+              placeholder="4">
             <span class="input-group-addon">/5</span>
           </div>
         </div>
 
         <div toggle-focus="whisky.price"  edit-mode="{{ whisky.isNew }}"
-          class="col-md-4 form-group">
+          class="col-md-3 form-group">
           <label tf-label class="control-label">Price</label> 
           <span tf-display="$(tf-model)" class="text-lg"></span>
           <div tf-input-cont class="input-group">
