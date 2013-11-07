@@ -1,15 +1,20 @@
 'use strict'
 
 angular.module('dramsyApp')
-  .controller 'WhiskyDetailCtrl', ($scope, Restangular, whisky, whiskyAll) ->
+  .controller 'WhiskyDetailCtrl', ($scope, $timeout, Restangular, whisky, whiskyAll) ->
     $scope.whisky = if whisky == 'null' then {} else Restangular.copy whisky
     $scope.whiskyAll = whiskyAll
     $scope.whisky.isNew = not whisky._id?
     $scope.whisky.flavors ?= [0,0,0,0,0,0,0,0]
      
-    $scope.cleanForm = () ->
+    $scope.isFormClean = () ->
       $scope.whiskyForm.$pristine == true
     
+    $scope.fwUpdateFn = (index, rating) ->
+      if $scope.whisky.flavors[index] != rating
+        $timeout $scope.whiskyForm.$setDirty, 0
+      $scope.whisky.flavors[index] = rating
+
     $scope.save = () ->
       if whisky._id?
         $scope.whisky.put().then () ->

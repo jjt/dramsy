@@ -64,12 +64,9 @@ angular.module('dramsyApp')
           scope.editing = true
 
         scope.inputBlur = (ev) ->
-          console.log(ev, scope)
           if scope.editMode != 'true'
-            console.log 'not in edit mode'
             scope.editing = false
 
         scope.inputKeypress = (ev) ->
-          console.log 'scope.inputKeypress'
           if ev.keyCode == 13 && ev.srcElement.tagName == "INPUT"
             scope.editing = false

@@ -24,7 +24,6 @@ function circularHeatChart() {
     'segmentMouseout', 'segmentMargin', 'accessor', 'addCenterTextEls']
 
   function chart(selection) {
-    console.log(selection);
     selection.each(function(data) {
       var svg = d3.select(this);
 

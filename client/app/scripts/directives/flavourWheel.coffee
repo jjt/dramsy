@@ -38,13 +38,6 @@ angular.module('dramsyApp')
         ratings = flavoursToCircChart ratings
         element.addClass 'flavour-wheel'
         
-        showChart = (chart) ->
-          d3.select(element.find('svg-holder')[0])
-            .selectAll('svg')
-            .data([ratings])
-            .enter()
-            .append('svg')
-            .call(chart)
 
         addCenterTextEls = (el) ->
           el.append('text')
@@ -60,15 +53,19 @@ angular.module('dramsyApp')
             seg = d3.select this
             segId = 1 * seg.attr 'seg-id'
             newRating = 1 + 1 * seg.attr 'radial-id'
-            ratings = flavoursToCircChart scope.fwData
-            console.log('click', scope.fwData, this)
 
             # If current rating == newRating == 1, set rating to 0 
             if newRating == 1 and scope.fwData[segId] == 1
               newRating = 0
               
-            scope.fwData[segId] = newRating
+            
+            # I'd like a better way to do this... 
+            if scope.$parent.fwUpdateFn
+              scope.$parent.fwUpdateFn segId, newRating
+              
+            #scope.fwData[segId] = newRating
 
+            ratings = flavoursToCircChart scope.fwData
             # Update cells in this segment by setting their fill
             # Should probably figure out a more idiomatic d3 way
             i = maxRating
@@ -78,7 +75,6 @@ angular.module('dramsyApp')
               newStroke = darker newColor, 0.2
               darkerColor = darker newColor, 0.3
               darkerStroke = darker darkerColor, 0.2
-              console.log cellId, newColor, newRating, i, segId
                 
               d = d3.select("[cell-id='#{cellId}']")
               # Set colors, check to see if we're moused over the cell
@@ -116,5 +112,12 @@ angular.module('dramsyApp')
               'stroke': d.attr('stroke-orig')
               'mouseover': null
             
-        window.chart = chart
+        showChart = (chart) ->
+          d3.select(element.find('svg-holder')[0])
+            .selectAll('svg')
+            .data([ratings])
+            .enter()
+            .append('svg')
+            .call(chart)
+
         showChart(chart)
