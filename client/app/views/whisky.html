@@ -24,10 +24,10 @@
       </thead>
       <tr ng-repeat="whisky in whiskies | filter: search | orderBy: 'name'">
         <td><a class="text-lg" href="/#/tasting/{{ whisky._id }}">{{ whisky.name }}</a></td>
-        <td>{{ whisky.date }}</td>
-        <td>{{whisky.rating}}</td>
-        <td>{{whisky.flavors}}</td>
-        <td>{{whisky.notes}}</td>
+        <td class="text-lg">{{ whisky.date }}</td>
+        <td class="text-lg">{{whisky.rating}}</td>
+        <td><div class="text-lg" unispark="whisky.flavors"></div></td>
+        <td class="text-lg">{{whisky.notes}}</td>
       </tr>
     </table>
   </div>
