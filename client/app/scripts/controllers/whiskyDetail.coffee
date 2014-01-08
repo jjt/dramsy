@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('dramsyApp')
-  .controller 'WhiskyDetailCtrl', ($scope, $timeout, Restangular, whisky, whiskyAll) ->
-    $scope.whisky = if whisky == 'null' then {} else Restangular.copy whisky
+  .controller 'WhiskyDetailCtrl', ($scope, $timeout, whisky, whiskyAll) ->
+    $scope.whisky = if whisky == 'null' then {} else {}
     $scope.whiskyAll = whiskyAll
     $scope.whisky.isNew = not whisky._id?
     $scope.whisky.flavors ?= [0,0,0,0,0,0,0,0]
@@ -25,3 +25,6 @@ angular.module('dramsyApp')
         $scope.whiskyAll.post($scope.whisky).then () ->
           console.log arguments
           alert 'created!'
+
+    $scope.delete = () ->
+      $scope.whis

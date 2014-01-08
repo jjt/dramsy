@@ -1,7 +1,8 @@
 'use strict'
 
-angular.module('dramsyApp', ['restangular', 'ngRoute'])
-  .config ($routeProvider, $locationProvider, RestangularProvider, rootUrlApi) ->
+angular.module('LocalStorageModule').value('prefix', 'dramsy-tvyqa2')
+angular.module('dramsyApp', ['ngRoute', 'jjt.unispark', 'LocalStorageModule'])
+  .config ($routeProvider, $locationProvider, rootUrlApi) ->
     $routeProvider
       .when '/',
         templateUrl: '/views/main.html'
@@ -15,25 +16,35 @@ angular.module('dramsyApp', ['restangular', 'ngRoute'])
         resolve:
           whisky: () ->
             {}
-          whiskyAll: (Restangular) ->
-            Restangular.all('whisky')
+          whiskyAll: () ->
+            [{}]
 
       .when '/tasting/:id',
         controller: 'WhiskyDetailCtrl'
         templateUrl: '/views/whiskyDetail.html'
         resolve:
-          whisky: (Restangular, $route) ->
-            Restangular.one('whisky', $route.current.params.id).get()
-          whiskyAll: (Restangular) ->
-            Restangular.all('whisky')
+          whisky: ($route) ->
+            {}
+          whiskyAll: () ->
+            [{}]
       .otherwise
         redirectTo: '/'
+
 
     $locationProvider.html5Mode true
 
     portStr = ''
     if window.location.port != ''
       portStr = ":#{window.location.port}"
-    RestangularProvider.setBaseUrl "http://#{window.location.hostname}#{portStr}/api/"
-    RestangularProvider.setRestangularFields id: '_id'
+
+
+
+#angular.module('dramsyApp')
+  #.run ['angularFireAuth', 'Config', '$rootScope', (angularFireAuth, Config, $rootScope) ->
+    #angularFireAuth.initialize Config.fbURL,
+      #scope: $rootScope
+      #name: 'auth'
+      #path: '/login'
+    #$rootScope.fbURL = fbURL
+    #]
 

@@ -1,4 +1,4 @@
 'use strict'
 
 angular.module('dramsyApp')
-  .controller 'MainCtrl', ($scope, Restangular) ->
+  .controller 'MainCtrl', ($scope) ->

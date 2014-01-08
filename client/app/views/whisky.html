@@ -26,7 +26,12 @@
         <td><a class="text-lg" href="/#/tasting/{{ whisky._id }}">{{ whisky.name }}</a></td>
         <td class="text-lg">{{ whisky.date }}</td>
         <td class="text-lg">{{whisky.rating}}</td>
-        <td><div class="text-lg" unispark="whisky.flavors"></div></td>
+        <td>
+          <div class="text-lg"
+            jjt-unispark="whisky.flavors" 
+            jjt-unispark-colors="{{flavorColors}}"
+            jjt-unispark-domain="[0, 10]"></div>
+        </td>
         <td class="text-lg">{{whisky.notes}}</td>
       </tr>
     </table>

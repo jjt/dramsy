@@ -1,0 +1,6 @@
+--ignore-dir=dist
+--ignore-dir=vendor
+--ignore-dir=bower_components
+--ignore-dir=.tmp
+--ignore-file=is:grunt-build-output.txt
+
